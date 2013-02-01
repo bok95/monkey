@@ -1,0 +1,9 @@
+<resources>
+
+    <dimen name="finger_button_width">33dp</dimen>
+    <dimen name="edge_detection_width">26dp</dimen>
+    <dimen name="human_finger_length">360dp</dimen>
+    <dimen name="finger_pie_length">110dp</dimen>
+    <dimen name="guide_string_offset">520dp</dimen>
+
+</resources>

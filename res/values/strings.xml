@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">Monkey</string>
+    <string name="action_title">Monkey</string>
+    <string name="action_description">Touch event logger for monkey tool</string>
+    
+</resources>
