@@ -4,9 +4,7 @@ import java.io.File;
 import java.io.FileOutputStream;
 import java.util.ArrayList;
 
-import android.content.BroadcastReceiver;
 import android.content.Context;
-import android.content.Intent;
 import android.graphics.PixelFormat;
 import android.graphics.drawable.BitmapDrawable;
 import android.os.Environment;
@@ -17,70 +15,28 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.view.View.OnLayoutChangeListener;
 import android.view.View.OnTouchListener;
-import android.view.ViewGroup;
 import android.view.ViewGroup.MarginLayoutParams;
+import android.view.ViewGroup;
 import android.view.WindowManager;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.LinearLayout.LayoutParams;
-import fingo.addons.IExternalFingoAction;
-import fingo.addons.IExternalFingoAction.State;
 
-public class ActionReceiver extends BroadcastReceiver implements IPackage,
-		IExternalAction, OnTouchListener {
-	private Context context;
+import com.example.monkey.fingo.AbstractActionReceiver;
+import com.example.monkey.fingo.FingoApplication;
 
+public class MonkeyActionReceiver extends AbstractActionReceiver implements
+		OnTouchListener {
+
+	private boolean isRecording;
 	private ImageView pointerView;
 	private MarginLayoutParams pointerMargin;
 	private int pointerOffsetX;
 	private int pointerOffsetY;
 	private LayoutInflater inflater;
-	private WindowManager window;
-
-	private boolean isRecording;
-
-	@Override
-	public void onReceive(Context context, Intent intent) {
-		String actionKey = getClassName() + '@' + context.getPackageName();
-		this.context = context;
-		int iState = intent.getIntExtra(actionKey, -1);
-		if (iState < 0)
-			return;
-
-		window = (WindowManager) context
-				.getSystemService(Context.WINDOW_SERVICE);
-
-		IExternalFingoAction.State state = IExternalFingoAction.State.values()[iState];
-		State currentState;
-		currentState = FingoApplication.getInstance().getCurrentState();
-
-		if (currentState == state)
-			return;
-
-		switch (state) {
-		case DEFAULT:
-		case TOGGLE_FIRST:
-			action1();
-			break;
-		case TOGGLE_SECOND:
-			action2();
-			break;
-		case TOGGLE_THIRD:
-			action3();
-			break;
-		}
-		FingoApplication.getInstance().setCurrentState(state);
-
-	}
-
-	@Override
-	public String getClassName() {
-		return MonkeyAction.class.getName();
-	}
-
+	
 	@Override
 	public void action1() {
-
 		LayoutInflater inflater = (LayoutInflater) context
 				.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 		final LinearLayout container = (LinearLayout) inflater.inflate(
@@ -88,7 +44,7 @@ public class ActionReceiver extends BroadcastReceiver implements IPackage,
 		FingoApplication.getInstance().setContainer(container);
 
 		container.setOnTouchListener(this);
-		//		 container.setBackgroundColor(Color.YELLOW); // for debugging
+		// container.setBackgroundColor(Color.YELLOW); // for debugging
 		container.addOnLayoutChangeListener(new OnLayoutChangeListener() {
 
 			@Override
@@ -152,6 +108,11 @@ public class ActionReceiver extends BroadcastReceiver implements IPackage,
 		FingoApplication.getInstance().setWaitTime(0);
 	}
 
+	@Override
+	protected String getClassName() {
+		return MonkeyAction.class.getName();
+	}
+	
 	@Override
 	public boolean onTouch(View v, MotionEvent event) {
 		long eventTime = event.getEventTime();
@@ -256,18 +217,15 @@ public class ActionReceiver extends BroadcastReceiver implements IPackage,
 	}
 
 	private int getWindowWidth(Context context) {
-		WindowManager window = (WindowManager) context
-				.getSystemService(Context.WINDOW_SERVICE);
 		DisplayMetrics displaymetrics = new DisplayMetrics();
 		window.getDefaultDisplay().getMetrics(displaymetrics);
 		return displaymetrics.widthPixels;
 	}
 
 	private int getWindowHeight(Context context) {
-		WindowManager window = (WindowManager) context
-				.getSystemService(Context.WINDOW_SERVICE);
 		DisplayMetrics displaymetrics = new DisplayMetrics();
 		window.getDefaultDisplay().getMetrics(displaymetrics);
 		return displaymetrics.heightPixels;
 	}
+
 }

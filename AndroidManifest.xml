@@ -9,7 +9,7 @@
         android:targetSdkVersion="14" />
 
     <application
-        android:name="com.example.monkey.FingoApplication"
+        android:name="com.example.monkey.fingo.FingoApplication"
         android:allowBackup="true"
         android:icon="@drawable/monkey_logo"
         android:label="@string/app_name"
@@ -24,13 +24,13 @@
             </intent-filter>
         </activity>
 
-        <receiver android:name="ScanFingoActionReceiver" >
+        <receiver android:name="com.example.monkey.MonkeyActionScanReceiver" >
             <intent-filter>
                 <action android:name="SCAN_INSTALLED_FINGO_ACTION" >
                 </action>
             </intent-filter>
         </receiver>
-        <receiver android:name="com.example.monkey.ActionReceiver" >
+        <receiver android:name="com.example.monkey.MonkeyActionReceiver" >
             <intent-filter>
                 <action android:name="ACTION_DO" >
                 </action>

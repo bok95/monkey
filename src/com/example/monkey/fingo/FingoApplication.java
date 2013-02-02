@@ -1,4 +1,4 @@
-package com.example.monkey;
+package com.example.monkey.fingo;
 
 import java.util.ArrayList;
 
@@ -20,20 +20,22 @@ public class FingoApplication extends Application {
 		return SingletonHolder.INSTANCE;
 	}
 
-	public long getWaitTime() {
-		return waitTime;
-	}
-
-	public void setWaitTime(long waitTime) {
-		this.waitTime = waitTime;
-	}
-
 	public State getCurrentState() {
 		return currentState;
 	}
 
 	public void setCurrentState(State currentState) {
 		this.currentState = currentState;
+	}
+
+	// Add your functions
+
+	public long getWaitTime() {
+		return waitTime;
+	}
+
+	public void setWaitTime(long waitTime) {
+		this.waitTime = waitTime;
 	}
 
 	public LinearLayout getContainer() {

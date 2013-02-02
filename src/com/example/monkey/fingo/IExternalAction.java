@@ -1,4 +1,4 @@
-package com.example.monkey;
+package com.example.monkey.fingo;
 
 public interface IExternalAction {
 	void action1();
