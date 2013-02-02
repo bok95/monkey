@@ -1,4 +1,4 @@
-package com.example.monkey.fingo;
+package fingo.plugin.action;
 
 public interface IExternalAction {
 	void action1();

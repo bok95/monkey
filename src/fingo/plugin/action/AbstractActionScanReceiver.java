@@ -1,4 +1,4 @@
-package com.example.monkey.fingo;
+package fingo.plugin.action;
 
 import java.util.HashMap;
 

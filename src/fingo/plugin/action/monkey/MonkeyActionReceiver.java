@@ -1,4 +1,4 @@
-package com.example.monkey;
+package fingo.plugin.action.monkey;
 
 import java.io.File;
 import java.io.FileOutputStream;
@@ -15,15 +15,17 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.view.View.OnLayoutChangeListener;
 import android.view.View.OnTouchListener;
-import android.view.ViewGroup.MarginLayoutParams;
 import android.view.ViewGroup;
+import android.view.ViewGroup.MarginLayoutParams;
 import android.view.WindowManager;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.LinearLayout.LayoutParams;
 
-import com.example.monkey.fingo.AbstractActionReceiver;
-import com.example.monkey.fingo.FingoApplication;
+import com.example.monkey.R;
+
+import fingo.plugin.action.AbstractActionReceiver;
+import fingo.plugin.action.FingoApplication;
 
 public class MonkeyActionReceiver extends AbstractActionReceiver implements
 		OnTouchListener {
@@ -33,8 +35,7 @@ public class MonkeyActionReceiver extends AbstractActionReceiver implements
 	private MarginLayoutParams pointerMargin;
 	private int pointerOffsetX;
 	private int pointerOffsetY;
-	private LayoutInflater inflater;
-	
+
 	@Override
 	public void action1() {
 		LayoutInflater inflater = (LayoutInflater) context
@@ -112,7 +113,7 @@ public class MonkeyActionReceiver extends AbstractActionReceiver implements
 	protected String getClassName() {
 		return MonkeyAction.class.getName();
 	}
-	
+
 	@Override
 	public boolean onTouch(View v, MotionEvent event) {
 		long eventTime = event.getEventTime();
@@ -127,7 +128,8 @@ public class MonkeyActionReceiver extends AbstractActionReceiver implements
 		Log.d("external", "onTouch : " + event);
 		if (action == MotionEvent.ACTION_OUTSIDE)
 			return false;
-		long wtime = Math.abs(eventTime - FingoApplication.getInstance().getWaitTime());
+		long wtime = Math.abs(eventTime
+				- FingoApplication.getInstance().getWaitTime());
 		// Log.d("monkey", "action = " + action + " pause(" + wtime
 		// + ") : eventTime = " + eventTime + " waitTime = "
 		// + waitTime);

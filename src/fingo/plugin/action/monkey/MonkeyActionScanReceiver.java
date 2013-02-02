@@ -1,10 +1,11 @@
-package com.example.monkey;
+package fingo.plugin.action.monkey;
 
 import java.util.HashMap;
 
-import com.example.monkey.fingo.AbstractActionScanReceiver;
+import com.example.monkey.R;
 
 import fingo.addons.IExternalFingoAction;
+import fingo.plugin.action.AbstractActionScanReceiver;
 
 public class MonkeyActionScanReceiver extends AbstractActionScanReceiver
 		implements IExternalFingoAction {

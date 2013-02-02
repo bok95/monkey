@@ -1,14 +1,9 @@
-package com.example.monkey.fingo;
+package fingo.plugin.action;
 
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
-import android.view.LayoutInflater;
-import android.view.ViewGroup.MarginLayoutParams;
 import android.view.WindowManager;
-import android.widget.ImageView;
-
-
 import fingo.addons.IExternalFingoAction;
 import fingo.addons.IExternalFingoAction.State;
 
@@ -16,14 +11,6 @@ public abstract class AbstractActionReceiver extends BroadcastReceiver
 		implements IExternalAction {
 	protected Context context;
 	protected WindowManager window;
-
-	private ImageView pointerView;
-	private MarginLayoutParams pointerMargin;
-	private int pointerOffsetX;
-	private int pointerOffsetY;
-	private LayoutInflater inflater;
-
-	private boolean isRecording;
 
 	protected abstract String getClassName();
 
@@ -57,7 +44,7 @@ public abstract class AbstractActionReceiver extends BroadcastReceiver
 			action3();
 			break;
 		}
-		
+
 		FingoApplication.getInstance().setCurrentState(state);
 	}
 
